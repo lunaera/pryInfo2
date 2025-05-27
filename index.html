@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./src/assets/icon/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./src/css/main.css">
+
+
+    <title>Eventos</title>
+</head>
+
+
+<body>
+
+    <header>
+
+    </header>
+    <main>
+        <section id="formulario" class="container mt-5">
+            <h2>Alta de productos</h2>
+
+            <form class=" row g-3 needs-validation" id="frmAltaProducto" novalidate>
+                <div class="col-md-4">
+                    <label for="txtIDArticulo" class="form-label">ID Artículo</label>
+                    <input type="number" class="form-control" name="txtIDArticulo" id="txtIDArticulo" min="1" value=""
+                        required>
+                    <div class="valid-feedback">
+                        Bien hecho!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="txtNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="txtNombre" id="txtNombre" value="" required>
+                    <div class="valid-feedback">
+                        Bien hecho!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="rngCantidad" class="form-label">Cantidad</label>
+                    <input type="range" class="form-range" name="rngCantidad" id="rngCantidad" value="100" min="1"
+                        max="200" required>
+                    <output>100</output>
+                    <div class="valid-feedback">
+                        Bien hecho!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="txtDescripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" name="txtDescripcion" id="txtDescripcion" value=""
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Bien hecho!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="txtPrecio" class="form-label">Precio</label>
+                    <input type="number" class="form-control" name="txtPrecio" id="txtPrecio" step="0.01"
+                        placeholder="0.00" required>
+                    <div class="valid-feedback">
+                        Bien hecho!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor ingresa un precio válido.
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="cboCategoria" class="form-label">Categoría</label>
+                    <select class="form-select" name="cboCategoria" id="cboCategoria" required>
+                        <option selected disabled value="">Elige una categoría...</option>
+                        <option value="lapices">Lápices</option>
+                        <option value="borradores">Borradores</option>
+                        <option value="lapiceros">Lapiceros</option>
+                        <option value="libretas">Libretas</option>
+                        <option value="marcadores">Marcadores</option>
+                        <option value="hojas">Hojas</option>
+                        <option value="juegos_didacticos">Juegos Didácticos</option>
+                        <option value="rompecabezas">Rompecabezas</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor selecciona una categoría válida
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Tipo de Venta</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rdbTipoVenta" id="radioMayoreo"
+                            value="mayoreo" required>
+                        <label class="form-check-label" for="radioMayoreo">
+                            Mayoreo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rdbTipoVenta" id="radioMenudeo"
+                            value="menudeo" required>
+                        <label class="form-check-label" for="radioMenudeo">
+                            Menudeo
+                        </label>
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor selecciona un tipo de venta.
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Añadir producto</button>
+                    <button id="btnShowProducts" class="btn btn-success" type="button">Listar productos</button>
+                    <button id="btnDeleteAllProducts" class="btn btn-success" type="button">Eliminar BD</button>
+                    <button id="PDFReport" class="btn btn-success" type="button">Exportar a PDF</button>
+                </div>
+            </form>
+
+            <div id="responseInformation" style="display: none;"></div>
+
+            <div class="container mt-5" id="divListaProductos">
+                <h2>Lista de Productos</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID Artículo</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Categoría</th>
+                                <th>Tipo de Venta</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyProductos">
+                            <!-- Aquí se agregarán las filas dinámicamente -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+    <!--Libreria para generar el PDF-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"
+        integrity="sha512-ad3j5/L4h648YM/KObaUfjCsZRBP9sAOmpjaT2BDx6u9aBrKFp7SbeHykruy83rxfmG42+5QqeL/ngcojglbJw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--Libreria para usar auto-table-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/5.0.2/jspdf.plugin.autotable.min.js"
+        integrity="sha512-JizZOUNesiGhMcp9fsA/9W31FOat6QysBM8hSj6ir8iIANIUJ2mhko7Lo1+j0ErftmJ8SebMZLm9iielKjeIEQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./src/js/formValidation.js"></script>
+    <script type="module" src="./src/js/main.js"></script>
+    <script type="module" src="./src/js/pdfReport.js"></script>
+
+
+</body>
+
+</html>
